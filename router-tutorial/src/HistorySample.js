@@ -1,4 +1,4 @@
-import React, {Component, useCallback, useContext, useEffect} from 'react'
+import React  from 'react'
 import { useNavigate, UNSAFE_NavigationContext as NavigationContext } from 'react-router-dom'
 
 const HistorySample = () => {
@@ -23,36 +23,6 @@ const HistorySample = () => {
         )
     
 }
-export function useBlocker(bloker, when= true){
-    const {navigator} = useContext(NavigationContext);
 
-    useEffect(()=>{
-        if(!when) return;
-
-        const unblock = navigator.block((tx)=>{
-            const autoUnblockingTx = {
-                ...tx,
-                retry() {
-                    unblock();
-                    tx.retry();
-                },
-            };
-            bloker(autoUnblockingTx);
-        });
-        return unblock;
-    }, [navigator, bloker, when]);
-};
-
-export function usePrompt(message, when = true) {
-    const bloker = useCallback((tx)=>{
-        //eslint-disable-next-line no-alert
-        if(window.confirm(message)) tx.retry();
-    }, [message]);
-    useBlocker(bloker, when);
-    
-  return (
-    <div>HistorySample</div>
-  )
-};
 
 export default HistorySample;

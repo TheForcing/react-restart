@@ -1,17 +1,19 @@
 import React from "react";
-import { Link, Route, Routes } from 'react-router-dom';
+import { NavLink, Route, Routes } from 'react-router-dom';
 import Profile from "./Profile";
 
 const Profiles = ()=>{
+   
+
     return (
         <div>
             <h3>사용자 목록:</h3>
             <ul>
                 <li>
-                    <Link to="/profiles/velopert">velopert</Link>
+                    <NavLink style={({ isActive})=>({ color: isActive? 'black' : 'white'})} to="/profiles/velopert">velopert</NavLink>
                 </li>
                 <li>
-                    <Link to="/profiles/gildong">gildong</Link>
+                    <NavLink className={({ isActive})=> 'nav-link' + (isActive? 'activated' : '')} to="/profiles/gildong">gildong</NavLink>
                 </li>
             </ul>
             <Routes>
@@ -22,6 +24,7 @@ const Profiles = ()=>{
              />
              <Route path=":username" element={<Profile/>}/>
              </Routes>
+           
         </div>
     );
 };
