@@ -1,23 +1,12 @@
-import React,{useState} from 'react'
-import axios from 'axios';
-import NewsList from './components/NewsList';
-
+import React,{useCallback, useState} from 'react'
+import { Route, Routes } from '../node_modules/react-router-dom/dist/index';
+import NewsPage from './pages/NewsPage';
 const App = () => {
-  const [data, setData] = useState(null);
-
-  const onClick = async () =>{
-    try{
-      const response = await axios.get(
-        'https://newsapi.org/v2/top-headlines?country=kr&apiKey=c2a9cf57adbe4a5980f5050cde4442c9',
-      );
-      setData(response.data);
-    } catch(e){
-      console.log(e);
-    }
-  };
 
   return (
-     <NewsList/>
+    <Routes>
+      <Route path="/:category?" element={NewsPage}/>
+      </Routes>
   );
 };
 
