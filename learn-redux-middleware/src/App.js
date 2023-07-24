@@ -1,11 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
-import CounterContainer from './container/CounterContainer';
+import React from "react";
+import SampleContainer from "./container/SampleContainer";
 
 function App() {
   return (
-    <div className="App">
-      <CounterContainer/>
+    <div>
+      <SampleContainer/>
     </div>
   );
 }
